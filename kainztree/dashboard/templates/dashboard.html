@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Dashboard</title>
+    <style>
+/* Global styles */
+body {
+    font-family: sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+}
+
+/* Sidebar styles */
+.sidebar {
+            background-color: #fff;
+            border-right: 1px solid #ccc;
+            padding: 25px;
+        }
+
+        .sidebar .list-group {
+            margin-bottom: 0;
+        }
+
+        .sidebar .list-group-item {
+            padding: 15px 15px;
+            border: none;
+            border-radius: 3px;
+            background-color: #fff;
+            color: #495057;
+            margin-bottom: 5px;
+            height: 50px;
+        }
+
+        .sidebar .list-group-item:hover {
+            background-color: #f5f5f5;
+            color: #343a40;
+        }
+
+        .sidebar .list-group-item.active {
+            background-color: #e9ecef;
+            color: #212529;
+            font-weight: bold;
+        }
+/* Main content styles */
+.main-content {
+    padding: 15px;
+}
+
+.main-content h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+.main-content h5 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #343a40;
+}
+
+.main-content span {
+    font-size: 16px;
+    color: #6c757d;
+    margin-right: 15px;
+}
+
+/* Table styles */
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.table th, .table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebar,
+    .main-content {
+        width: 100%;
+    }
+}
+.stats {
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 1px;
+    margin-left: 0px;
+    
+}
+
+.category-count,
+.item-count {
+    text-align: left;
+}
+
+.category-count h5,
+.item-count h5 {
+    margin-top: 0;
+}
+
+.category-count span,
+.item-count span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+{% extends "base.html" %}
+{% block title %} Item Dashboard {% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active">Home</a>
+            <a href="#" class="list-group-item list-group-item-action">Items</a>
+            <a href="#" class="list-group-item list-group-item-action">Stock</a>
+            <a href="#" class="list-group-item list-group-item-action">Build</a>
+            <a href="#" class="list-group-item list-group-item-action">Customers</a>
+            <a href="#" class="list-group-item list-group-item-action">Sales Orders</a>
+            <a href="#" class="list-group-item list-group-item-action">Suppliers</a>
+            <a href="#" class="list-group-item list-group-item-action">Manufacturers</a>
+            <a href="#" class="list-group-item list-group-item-action">Purchase Orders</a>
+            <a href="#" class="list-group-item list-group-item-action">Reports</a>
+            <a href="#" class="list-group-item list-group-item-action">Help</a>
+            <a href="#" class="list-group-item list-group-item-action">Integrations</a>
+            <a href="{% url 'logout' %}" class="list-group-item list-group-item-action">Logout</a>
+            <a href="#" class="list-group-item list-group-item-action">Profile</a>
+        </div>
+    </div>
+    <!-- Main content -->
+    <div class="col-md-9">
+        <h1>Item Dashboard</h1>
+        <h5>All Items</h5>
+
+        <div class="col-md-3">
+          <div class="stats">
+              <div class="category-count">
+                  <h5>Total Categories</h5>
+                  <span>{{ dashboard_data.categories_count }}</span>
+              </div>
+              <div class="item-count">
+                  <h5>Total Items</h5>
+                  <span>{{ dashboard_data.items_count }}</span>
+              </div>
+            </div>
+
+        </div>
+
+        <div class="container">
+        </div>
+      </div>
+
+        <div class="container">
+            <br><br><br>
+            <table id="inventory" class="table table-bordered table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>In Stock</th>
+                        <th>Available Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if dashboard_data.items_data %}
+                    {% for data in dashboard_data.items_data %}
+                    <tr>
+                        <td>{{ data.sku }}</td>
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.category }}</td>
+                        <td>{{ data.stock_status }}</td>
+                        <td>{{ data.available_stock }}</td>
+
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+
+            <script>
+                new DataTable('#inventory', {
+                    lengthChange: true,
+                    searching: true,
+                    responsive: true,
+                    order: [],
+                    ordering: true,
+                });
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock content %}

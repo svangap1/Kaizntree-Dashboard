@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    {% block content %}
+    {{ dashboard_data }}
+    <header></header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Item Dashboard</a>
+            </nav>
+        <h1>Inventory Management Dashboard</h1>
+    </header>
+    <main>
+        <section class="item-list">
+            <h2>Items</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Name</th>
+                        <th>Tags</th>
+                        <th>Category</th>
+                        <th>In Stock</th>
+                        <th>Available Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ETSY-FOREST</td>
+                        <td>Etsy Bundle Pack</td>
+                        <td>Bundes</td>
+                        <td>Finished Products</td>
+                        <td>185</td>
+                        <td>60</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </section>
+        </main>
+    <footer>
+        </footer>
+{% endblock %}
+</body>
+</html>

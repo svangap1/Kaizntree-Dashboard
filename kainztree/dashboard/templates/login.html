@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        form {
+            margin: 0 auto;
+            width: 300px; /* Adjust width as needed */
+            padding: 100px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-top: 50px; /* Adjust margin as needed */
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 150px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 0px; /* Adjust margin as needed */
+        }
+    </style>
+</head>
+<body>
+    <img src="https://app.kaizntree.com/img/Kaizntree_Palm_Trees.147c8cb5.png" alt="Login Image">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    <button type="submit"><a href="{% url 'signup' %}" class="signup-btn">Sign Up</a>
+</body>
+</html>

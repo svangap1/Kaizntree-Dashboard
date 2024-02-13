@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Call Demo</title>
+</head>
+<body>
+    <h1>API Call Demo</h1>
+    <button onclick="fetchItems()">Fetch Items</button>
+
+    <script>
+        function fetchItems() {
+            // Make a GET request to the API endpoint
+            fetch('http://127.0.0.1:8000/items')
+                .then(response => {
+                    console.log("Inside the then block");
+                    // Check if the response is successful (status code 200)
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    console.log(response)
+                    // Parse the JSON response
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("handling the promise block");
+                    // Display the data in the console
+                    console.log(data);
+                    // You can handle the data here, such as updating the UI
+                    // For example, you can loop through the data and display it on the page
+                })
+                .catch(error => {
+                    console.log("handling the catch block");
+                    // Handle any errors that occurred during the fetch
+                    console.error('Error fetching data:', error);
+                });
+        }
+    </script>
+</body>
+</html>
