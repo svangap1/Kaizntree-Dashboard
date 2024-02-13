@@ -15,8 +15,8 @@ Username: admin
 Password: admin
 
 Kaizntree app login credentials:
-sandeepv
-Pressword@141
+Username: sandeepv
+Password: Pressword@141
 
 
 Thank you,
